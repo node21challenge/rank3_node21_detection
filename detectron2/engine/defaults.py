@@ -112,7 +112,12 @@ Run on multiple machines:
     parser.add_argument("--config-file-retina", default="", metavar="FILE", help="path to config file")
 
     parser.add_argument(
-        "--train",
+        "--train-maskr",
+        action="store_true",
+        help="Whether to attempt to perform training. ",
+    )
+    parser.add_argument(
+        "--train-retina",
         action="store_true",
         help="Whether to attempt to perform training. ",
     )
