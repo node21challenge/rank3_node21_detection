@@ -32,6 +32,7 @@ COPY --chown=algorithm:algorithm coco_json.py /opt/algorithm/
 COPY --chown=algorithm:algorithm coco_json_test.py /opt/algorithm/
 COPY --chown=algorithm:algorithm postprocessing.py /opt/algorithm/
 COPY --chown=algorithm:algorithm test_main.py /opt/algorithm/
+COPY --chown=algorithm:algorithm process_launchers.py /opt/algorithm/
 COPY --chown=algorithm:algorithm setup.py /opt/algorithm/
 COPY --chown=algorithm:algorithm setup.cfg /opt/algorithm/
 COPY --chown=algorithm:algorithm maskr_final_100.pth /opt/algorithm/
