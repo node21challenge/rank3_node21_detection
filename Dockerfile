@@ -22,7 +22,7 @@ RUN pip install --upgrade pip
 COPY --chown=algorithm:algorithm requirements.txt /opt/algorithm/
 COPY --chown=algorithm:algorithm entrypoint.sh /opt/algorithm/
 COPY --chown=algorithm:algorithm configs /opt/algorithm/configs
-COPY --chown=algorithm:algorithm datasets /opt/algorithm/datasets
+# COPY --chown=algorithm:algorithm datasets /opt/algorithm/datasets
 COPY --chown=algorithm:algorithm detectron2 /opt/algorithm/detectron2
 COPY --chown=algorithm:algorithm detectron2.egg-info /opt/algorithm/detectron2.egg-info
 COPY --chown=algorithm:algorithm docs /opt/algorithm/docs
