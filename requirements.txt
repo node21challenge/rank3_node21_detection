@@ -1,0 +1,9 @@
+
+evalutils==0.3.0
+
+scikit-learn==0.24.2
+scipy==1.6.3
+MedPy
+pypng
+pandas
+h5py

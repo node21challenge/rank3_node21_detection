@@ -1,0 +1,53 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+    # FrozenBN, GN, "SyncBN", "BN"
+    NORM: 'SyncBN'
+    # Specify if apply deform_conv on Res2, Res3, Res4, Res5 #### to try
+    #    DEFORM_ON_PER_STAGE： [False, False, False, False]
+  PIXEL_MEAN: [0]
+  PIXEL_STD: [1]
+  ROI_HEADS:
+    NUM_CLASSES: 1
+#    IOU_THRESHOLDS: [0.2]
+  BACKBONE:
+    FREEZE_AT: -1
+DATASETS:
+  TRAIN: ("pm_node_v3_submit",)
+#  TRAIN: ("pm_node_v3_train",)
+  TEST: ("pm_node_v1_submit_test",)
+TEST:
+  EVAL_PERIOD: 0
+DATALOADER:
+  FILTER_EMPTY_ANNOTATIONS: False
+INPUT:
+  FORMAT: 'L'
+#  MIN_SIZE_TRAIN: (512, 640, 704, 832, 896, 1024, 1152, 1216, 1344, 1408, 1536)
+#  MAX_SIZE_TRAIN: 1536
+#  MIN_SIZE_TEST: 512
+#  MAX_SIZE_TEST: 1536
+  RESIZE_SCALE_RANGE_TRAIN: (0.8, 1, 1.2, 1.4, 1.6, 1.8, 2)
+  RESIZE_SCALE_RANGE_TEST: (0.8, 1, 1.2)
+  RANDOM_ROTATION_ANGLES: (0, 180)
+  GAUSSIAN_BLUR_RANDOM_SIGMA_RANGE: (.1, 3)
+  GAUSSIAN_BLUR_KERNEL_SIZE: (5,5)
+  ### windowing notes
+  ## 2. dynamic pt-wise quantile image pixel intensity
+  # 5%-95% 10%-90%
+  WINDOW: (0.005, 0.995)
+SOLVER:
+  IMS_PER_BATCH: 8
+  VAL_IMS_PER_BATCH: 8
+  CHECKPOINT_PERIOD: 1000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: "norm"
+    NORM_TYPE: 2.0
+  STEPS: (40000, 43000)
+  MAX_ITER: 45000
+  BASE_LR: 0.005
+
+VIS_PERIOD: 0
+OUTPUT_DIR: './detectron2_outputs'
